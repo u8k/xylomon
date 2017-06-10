@@ -31,21 +31,21 @@
       cursor: pointer;
     }
 
-    @media only screen and (hover: hover) {
-      .bar:hover {
-        box-shadow: 0vw 0vw 3vw 1vw white;
-      }
-      .bar:active {
-        box-shadow: 0vw 0vw 1vw .4vw white;
-      }
-    }
-
     .pressed {
       box-shadow: 0vw 0vw 3vw 1vw white;
     }
 
     .bar:active {
       box-shadow: 0vw 0vw 2.5vw .8vw white;
+    }
+
+    @media only screen and (any-hover: hover), (-moz-touch-enabled: 0) {
+      .bar:hover {
+        box-shadow: 0vw 0vw 3vw 1vw white;
+      }
+      .bar:active {
+        box-shadow: 0vw 0vw 1vw .4vw white;
+      }
     }
 
     .b1 {
@@ -311,9 +311,8 @@
       setInterval(playRandom, 250)
     }
 
-    document.addEventListener("keydown", keyHandler, event);
-    function keyHandler(event) {
-      var key = event.keyCode;
+    window.onkeyup = function(e) {
+      var key = e.keyCode;
       switch (key) {
         case 65:
           listener(1);
@@ -351,6 +350,7 @@
           setTimeout(unpress, 200, ("b7"));
           break;
         case 186:
+        case 59:
           listener(8);
           document.getElementById("b8").classList.add('pressed');
           setTimeout(unpress, 200, ("b8"));
@@ -361,9 +361,9 @@
 
 ////////**************** sound player stuff**********///////////////
     var channel_max = 10; // number of channels
-    var audiochannels = new Array();
+    var audiochannels = [];
     for (var a = 0; a < channel_max; a++) { // prepare the channels
-      audiochannels[a] = new Array();
+      audiochannels[a] = [];
       audiochannels[a]['channel'] = new Audio(); // create a new audio object
       audiochannels[a]['finished'] = -1; // expected end time for this channel
     }
