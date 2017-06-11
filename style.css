@@ -1,0 +1,137 @@
+  body {
+    overflow: hidden;
+    color: #DBDBDB;
+    background-color: #4B4B5B;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .group {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 95vh;
+    margin: 0px 5% 0px 5%;
+  }
+
+  .bar {
+    border-radius: 5px;
+    width: 10%;
+    margin: auto;
+    cursor: pointer;
+  }
+
+  .pressed {
+    box-shadow: 0vw 0vw 3vw 1vw white;
+  }
+
+  .bar:active {
+    box-shadow: 0vw 0vw 2.5vw .8vw white;
+  }
+
+  @media only screen and (any-hover: hover), (-moz-touch-enabled: 0) {
+    .bar:hover {
+      box-shadow: 0vw 0vw 3vw 1vw white;
+    }
+    .bar:active {
+      box-shadow: 0vw 0vw 1vw .4vw white;
+    }
+  }
+
+  .b1 {
+    background-color: #FFCCCC;
+    height: 80vh;
+  }
+  .b2 {
+    background-color: #FFEACC;
+    height: 74vh;
+  }
+  .b3 {
+    background-color: #FFFECC;
+    height: 68vh;
+  }
+  .b4 {
+    background-color: #C7F5C4;
+    height: 63vh;
+  }
+  .b5 {
+    background-color: #C4F0F4;
+    height: 57vh;
+  }
+  .b6 {
+    background-color: #C9C4F4;
+    height: 51vh;
+  }
+  .b7 {
+    background-color: #F6C6E6;
+    height: 45vh;
+  }
+  .b8 {
+    background-color: #FFCCCC;
+    height: 40vh;
+  }
+
+  .button {
+    background-color: #DBDBDB;
+    width: 6vmax;
+    height: 6vmax;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    bottom: 8vmin;
+    right: 8vmin;
+    text-align: center;
+  }
+
+  #score {
+    color: inherit;
+    position: relative;
+    top: 50%;
+    font-size: 6vmin;
+    transform: translateY(-50%);
+  }
+
+  .volumeKnob,
+  .infoKnob {
+    color: inherit;
+    cursor: pointer;
+    font-size: 10vmin;
+    font-family: sans-serif;
+  }
+  .infoKnob {
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #infoPanel {
+    text-align: center;
+    padding-top: 6vmin;
+    padding-bottom: 12vmin;
+    background-color: #72728E;
+    width: 60vw;
+    position: fixed;
+    left: 50%;
+    bottom: -70vh;
+    border-radius: 20px;
+    box-shadow: 0px 2vmin 9vmin 4vmin black;
+    transform: translateX(-50%);
+    visibility: hidden;
+  }
+
+  p {
+    color: inherit;
+    font-size: 5vmin;
+    margin: 0;
+  }
+
+  .notClicky {cursor: default;}
+  .black {background-color: black;}
+  .red {background-color: red;}
+  .darkerGrey {background-color: #72728E;}
+  .hide {visibility: hidden;}
