@@ -13,9 +13,8 @@ function volumeAdjust(amount) {
   current += amount;
   document.getElementById("volumeMeter").innerHTML = current
   var actual = current *.1;
-  for (var i = 0; i < channel_max; i++) {
-    audiochannels[i]['channel'].volume = actual;
-  }
+  audio['_volume'] = actual
+  audio.play(String(Math.floor((Math.random() * 8) + 1)));
   if (current == 10) {document.getElementById("volUpKnob").classList.add('hide');}
   else if (current == 0) {document.getElementById("volDownKnob").classList.add('hide');}
   else if ((current == 1) && (amount == 1)) {document.getElementById("volDownKnob").classList.remove('hide');}
@@ -80,7 +79,7 @@ function listener(btnNum) {
         setTimeout(next, 2500);
       }
     } else {
-      playSound("stab");
+      audio.play("0");
       document.body.classList.add("red");
       var barList = document.getElementsByClassName("bar");
       var len = barList.length;
@@ -94,7 +93,7 @@ function listener(btnNum) {
       return;
     }
   }
-  playSound(("s").concat(btnNum));
+  audio.play(String(btnNum));
   if (death == true) {resetDisplay();}
 }
 
@@ -132,7 +131,7 @@ function next() {
 function autoPlay(arr, speed, resetBars) {
   var ray = arr.slice();
   var x = ray[0];
-  playSound("s" + x);
+  audio.play(String(x));
   document.getElementById("b" + x).classList.add('pressed');
   setTimeout(unpress, 300, ("b" + x));
   ray.splice(0, 1);
@@ -143,10 +142,6 @@ function autoPlay(arr, speed, resetBars) {
 
 function unpress(btn) {
   document.getElementById(btn).classList.remove('pressed');
-}
-
-function music() {
-  setInterval(playRandom, 250)
 }
 
 window.onkeyup = function(e) {
@@ -196,26 +191,12 @@ window.onkeyup = function(e) {
   }
 }
 
-
-////////**************** sound player stuff**********///////////////
-var channel_max = 10; // number of channels
-var audiochannels = [];
-for (var a = 0; a < channel_max; a++) { // prepare the channels
-  audiochannels[a] = [];
-  audiochannels[a]['channel'] = new Audio(); // create a new audio object
-  audiochannels[a]['channel'].volume = .5;
-  audiochannels[a]['finished'] = -1; // expected end time for this channel
-}
-
-function playSound(s) {
-  for (var a = 0; a < audiochannels.length; a++) {
-    var thistime = new Date();
-    if (audiochannels[a]['finished'] < thistime.getTime()) { // is this channel finished?
-      audiochannels[a]['finished'] = thistime.getTime() + document.getElementById(s).duration * 1000;
-      audiochannels[a]['channel'].src = document.getElementById(s).src;
-      audiochannels[a]['channel'].load();
-      audiochannels[a]['channel'].play();
-      break;
-    }
-  }
+//////******* sound player setup******///////
+var audio = new Howl({
+  src: ['audio.mp3'],
+  volume: .5,
+  sprite: [[9600, 1000]]
+});
+for (var i = 0; i < 8; i++) {
+  audio['_sprite'].push([i*1200, 1000]);
 }
